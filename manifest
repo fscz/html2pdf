@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+apiversion: 2
+description: My module
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2012 by Your Company
+
+
+# these should not be edited
+name: html2pdf
+moduleid: com.factisresearch.html2pdf
+guid: 195aae55-5ec4-4f9b-85c6-64962ba21ad7
+platform: iphone
+minsdk: 2.1.4.GA
