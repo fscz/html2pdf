@@ -26,7 +26,7 @@ var html2pdf = require('com.factisresearch.html2pdf');
 Ti.API.info("module is => " + html2pdf);
 
 
-html2pdf.addEventListener('ready', function(e) {
+html2pdf.addEventListener('pdfready', function(e) {
     var pdfFile = Ti.Filesystem.getFile(e.pdf);
     var emailDialog = Ti.UI.createEmailDialog();
     emailDialog.addAttachment(pdfFile);
