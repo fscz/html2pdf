@@ -1,6 +1,10 @@
 This code is an iOS Module for Appcelerator, as described
 in https://wiki.appcelerator.org/display/guides/iOS+Module+Development+Guide .
 
+For more info see:
+http://factisresearch.blogspot.de/2012/12/templated-pdf-printing-for-appcelerator.html
+
+
 CUSTOMIZE
 You should be able to open the project in XCode or use an editor
 of your choise to edit the files in the 'Classes' folder.
