@@ -2,11 +2,11 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.1
+version: 0.2
 apiversion: 2
-description: My module
-author: Your Name
-license: Specify your license
+description: Convert html to pdf
+author: Fabian Schuetz
+license: GNU
 copyright: Copyright (c) 2012 by Your Company
 
 
@@ -15,4 +15,5 @@ name: html2pdf
 moduleid: com.factisresearch.html2pdf
 guid: 195aae55-5ec4-4f9b-85c6-64962ba21ad7
 platform: iphone
-minsdk: 2.1.4.GA
+minsdk: 3.4.1.GA
+architectures: armv7 i386 x86_64 arm64
