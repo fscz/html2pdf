@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>78F1159B-B1A6-4C59-AC66-83743F9C820C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>html2pdf</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CBE5588B5F96B84951238383A05DC3C5FFF6A5D2</key>
+		<string>https://github.com/caspahouzer/html2pdf.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>html2pdf.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CBE5588B5F96B84951238383A05DC3C5FFF6A5D2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/caspahouzer/html2pdf.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CBE5588B5F96B84951238383A05DC3C5FFF6A5D2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CBE5588B5F96B84951238383A05DC3C5FFF6A5D2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>html2pdf</string>
+		</dict>
+	</array>
+</dict>
+</plist>
