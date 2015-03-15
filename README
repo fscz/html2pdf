@@ -7,7 +7,7 @@ http://factisresearch.blogspot.de/2012/12/templated-pdf-printing-for-appcelerato
 
 CUSTOMIZE
 You should be able to open the project in XCode or use an editor
-of your choise to edit the files in the 'Classes' folder.
+of your choice to edit the files in the 'Classes' folder.
 
 COMPILE
 Use ./build.py to compile the project. The result will be a zip file,
