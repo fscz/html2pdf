@@ -9,6 +9,7 @@
 @interface ComFactisresearchHtml2pdfModule : TiModule <UIWebViewDelegate>
 {
     UIWebView* webview;
+    NSString* filename;
 }
-- (void) setHtmlString:(NSString*)html;
+- (void) setHtmlString:(NSArray*)arguments;
 @end

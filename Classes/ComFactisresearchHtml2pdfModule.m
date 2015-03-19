@@ -155,7 +155,7 @@
         dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
         
-        path = [NSString stringWithFormat:@"%@/%@",[dirPaths objectAtIndex:0], @"Expose.pdf"];
+        path = [NSString stringWithFormat:@"%@/%@",[dirPaths objectAtIndex:0], filename];
         TiBlob* pdfBlob = [[[TiBlob alloc] initWithData:pdfData
                                        mimetype:@"application/octet-stream"] autorelease];
         NSLog(@"[INFO] writing blob to: %@", path)
@@ -165,19 +165,23 @@
         NSLog(@"[INFO] firing 'pdfready' event");
         
         [self fireEvent:@"pdfready" withObject:event];
-        NSLog(@"[INFO] webViewDidFinishLoad done");
     });
 }
 
 #pragma Public APIs
-- (void) setHtmlString:(NSString*)html {
-    NSLog(@"[INFO] setHtmlString called");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        webview = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
-        [webview setDelegate: self];
-        [webview loadHTMLString:html baseURL: nil];
-        NSLog(@"[INFO] setHtmlString done");
-    });
+- (void) setHtmlString:(NSArray*)arguments {
+    if ([arguments count] > 1) {
+        filename = [arguments objectAtIndex: 1];
+    } else {
+        filename = @"attachment.pdf";
+    }
+    if ([arguments count] > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            webview = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
+            [webview setDelegate: self];
+            [webview loadHTMLString:[arguments objectAtIndex:0] baseURL: nil];
+        });
+    }
 }
 
 @end

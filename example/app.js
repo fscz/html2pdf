@@ -34,7 +34,9 @@ html2pdf.addEventListener('pdfready', function(e) {
 });
 
 button.addEventListener('click', function(e) {
-    html2pdf.setHtmlString(html);
+    html2pdf.setHtmlString([html, "foo.pdf"]); // second argument is for filename
+                                                                      // note that you should delete this
+                                                                      // when you are done
 });
 
 
