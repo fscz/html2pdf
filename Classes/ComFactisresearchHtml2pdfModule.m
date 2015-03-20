@@ -117,47 +117,44 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"[INFO] didFailLoadWithError called");    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"[INFO] shouldStartLoadWithRequest called");
     return TRUE;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"[INFO] webViewDidStartLoad called");
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"[INFO] webViewDidFinishLoad called");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        UIPrintPageRenderer *render = [[UIPrintPageRenderer alloc] init];
-        
-        [render addPrintFormatter:webView.viewPrintFormatter startingAtPageAtIndex:0];
-        
-        CGRect printableRect = CGRectMake(36,
-                                          72,
-                                          540,
-                                          684);
-        
-        CGRect paperRect = CGRectMake(0, 0, 612, 792);
-        
-        [render setValue:[NSValue valueWithCGRect:paperRect] forKey:@"paperRect"];
-        [render setValue:[NSValue valueWithCGRect:printableRect] forKey:@"printableRect"];
-        
-        NSData *pdfData = [render printToPDF];
+    UIPrintPageRenderer *render = [[UIPrintPageRenderer alloc] init];
+    [render addPrintFormatter:webView.viewPrintFormatter startingAtPageAtIndex:0];
     
+    CGRect printableRect = CGRectMake(36,
+                                      72,
+                                      540,
+                                      684);
+    
+    CGRect paperRect = CGRectMake(0, 0, 612, 792);
+    
+    [render setValue:[NSValue valueWithCGRect:paperRect] forKey:@"paperRect"];
+    [render setValue:[NSValue valueWithCGRect:printableRect] forKey:@"printableRect"];
+
+    NSData *pdfData = [render printToPDF];
+    
+    NSArray *dirPaths;
+    NSString *path;
+    
+    dispatch_queue_t heavy_lifting = dispatch_queue_create("com.fscz.html2pdf", NULL);
+    dispatch_async(heavy_lifting, ^{
         NSArray *dirPaths;
         NSString *path;
-        
         dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
-        
+
         path = [NSString stringWithFormat:@"%@/%@",[dirPaths objectAtIndex:0], filename];
         TiBlob* pdfBlob = [[[TiBlob alloc] initWithData:pdfData
-                                       mimetype:@"application/octet-stream"] autorelease];
+                                               mimetype:@"application/octet-stream"] autorelease];
         NSLog(@"[INFO] writing blob to: %@", path)
         [pdfBlob writeTo: path error:NULL];
         
@@ -169,17 +166,19 @@
 }
 
 #pragma Public APIs
-- (void) setHtmlString:(NSArray*)arguments {
-    if ([arguments count] > 1) {
-        filename = [arguments objectAtIndex: 1];
-    } else {
-        filename = @"attachment.pdf";
-    }
-    if ([arguments count] > 0) {
+- (void) setHtmlString:(id)args {
+    ENSURE_TYPE_OR_NIL(args,NSArray);
+    if ([args count] > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            if ([args count] > 1) {
+                filename = [[args objectAtIndex:1] retain];
+            } else {
+                filename = @"attachment.pdf";
+            }
+            NSString* html = [[args objectAtIndex:0] retain];
             webview = [[UIWebView alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
             [webview setDelegate: self];
-            [webview loadHTMLString:[arguments objectAtIndex:0] baseURL: nil];
+            [webview loadHTMLString:html baseURL: nil];
         });
     }
 }

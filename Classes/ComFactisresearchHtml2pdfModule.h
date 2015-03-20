@@ -11,5 +11,5 @@
     UIWebView* webview;
     NSString* filename;
 }
-- (void) setHtmlString:(NSArray*)arguments;
+- (void) setHtmlString:(id)args;
 @end
